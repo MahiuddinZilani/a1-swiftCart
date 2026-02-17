@@ -1,10 +1,41 @@
 // console.log("hello");
 
+const loadAllProducts = () => {
+  const url = "https://fakestoreapi.com/products";
+  fetch(url)
+    .then((res) => res.json())
+    .then((allProducts) => {
+      displayCategoryProducts(allProducts);
+      //   displayCategories();
+    });
+};
+
 const loadCategories = () => {
   const url = "https://fakestoreapi.com/products/categories";
   fetch(url)
     .then((res) => res.json())
     .then((categories) => displayCategories(categories));
+};
+
+const removeActive = () => {
+  const categoryButtons = document.querySelectorAll(".category-btn");
+  categoryButtons.forEach((btn) => btn.classList.remove("active"));
+};
+
+const displayCategories = (categories) => {
+  //   console.log(categories);
+
+  const categoriesContainer = document.getElementById("categories-container");
+  categoriesContainer.innerHTML = "";
+
+  for (let category of categories) {
+    // console.log(category);
+    const btnDiv = document.createElement("div");
+    btnDiv.innerHTML = `
+    <button id="category-btn-${category}" onclick="loadProductsCategory('${category}')" class="btn btn-outline category-btn">${category}</button>
+    `;
+    categoriesContainer.append(btnDiv);
+  }
 };
 
 const loadProductsCategory = (category) => {
@@ -14,13 +45,24 @@ const loadProductsCategory = (category) => {
 
   fetch(url)
     .then((res) => res.json())
-    .then((products) => displayCategoryProducts(products));
+    .then((products) => {
+      removeActive();
+      const clickBtn = document.getElementById(`category-btn-${category}`);
+      console.log(clickBtn);
+      clickBtn.classList.add("active");
+      displayCategoryProducts(products);
+    });
 };
 
 const displayCategoryProducts = (products) => {
   //   console.log(Array.isArray(products));
   const cardContainer = document.getElementById("cards-container");
   cardContainer.innerHTML = "";
+
+  if (products.length === 0) {
+    alert("item not found");
+    return;
+  }
 
   products.forEach((product) => {
     const ratingValue = product?.rating?.rate || 0;
@@ -73,20 +115,5 @@ const displayCategoryProducts = (products) => {
   });
 };
 
-const displayCategories = (categories) => {
-  //   console.log(categories);
-
-  const categoriesContainer = document.getElementById("categories-container");
-  categoriesContainer.innerHTML = "";
-
-  for (let category of categories) {
-    // console.log(category);
-    const btnDiv = document.createElement("div");
-    btnDiv.innerHTML = `
-    <button onclick="loadProductsCategory('${category}')" class="btn btn-outline">${category}</button>
-    `;
-    categoriesContainer.append(btnDiv);
-  }
-};
-
 loadCategories();
+loadAllProducts();
