@@ -29,24 +29,38 @@
   </head>
   <body>
     <!-- navbar  -->
-    <div class="navbar bg-base-100 shadow-sm">
-      <div class="navbar-start">
-        <a class="btn btn-ghost text-xl">SwiftCart</a>
-      </div>
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <!-- Logo -->
+          <a href="./index.html" class="text-2xl font-bold text-primary">
+            SwiftCart
+          </a>
 
-      <div class="navbar-center hidden lg:flex">
-        <ul class="menu menu-horizontal px-1">
-          <li><a href="./index.html">Home</a></li>
-          <li><a href="./products.html">Products</a></li>
-          <li><a>About</a></li>
-          <li><a>Contact</a></li>
-        </ul>
-      </div>
+          <!-- Desktop Navigation -->
+          <nav class="hidden md:flex space-x-8">
+            <a
+              href="./index.html"
+              class="text-gray-700 hover:text-primary transition-colors"
+              >Home</a
+            >
+            <a
+              href="./products.html"
+              class="text-gray-700 hover:text-primary transition-colors"
+              >Products</a
+            >
+            <a class="text-gray-700 hover:text-primary transition-colors"
+              >About</a
+            >
+            <a class="text-gray-700 hover:text-primary transition-colors"
+              >Contact</a
+            >
+          </nav>
 
-      <div class="navbar-end flex-none">
-        <div class="dropdown dropdown-end">
-          <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
-            <div class="indicator">
+          <!-- Right Section -->
+          <div class="flex items-center space-x-4">
+            <!-- Cart -->
+            <button class="p-2 text-gray-600 hover:text-primary relative">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-5 w-5"
@@ -61,51 +75,55 @@
                   d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
                 />
               </svg>
-              <span class="badge badge-sm indicator-item">8</span>
-            </div>
+              <span
+                class="absolute -top-1 -right-1 bg-primary text-white text-xs rounded-full h-4 w-4 flex items-center justify-center"
+                >8</span
+              >
+            </button>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden p-2 text-gray-600 hover:text-primary">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
           </div>
-          <div
-            tabindex="0"
-            class="card card-compact dropdown-content bg-base-100 z-1 mt-3 w-52 shadow"
-          >
-            <div class="card-body">
-              <span class="text-lg font-bold">8 Items</span>
-              <span class="text-info">Subtotal: $999</span>
-              <div class="card-actions">
-                <button class="btn btn-primary btn-block">View cart</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="dropdown">
-          <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />
-            </svg>
-          </div>
-          <ul
-            tabindex="-1"
-            class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-          >
-            <li><a href="./index.html">Home</a></li>
-            <li><a href="./products.html">Products</a></li>
-            <li><a>About</a></li>
-            <li><a>Contact</a></li>
-          </ul>
         </div>
       </div>
-    </div>
+
+      <!-- Mobile Menu -->
+      <div class="md:hidden hidden" id="mobile-menu">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+          <a
+            href="./index.html"
+            class="block px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md"
+            >Home</a
+          >
+          <a
+            href="./products.html"
+            class="block px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md"
+            >Products</a
+          >
+          <a class="block px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md"
+            >About</a
+          >
+          <a class="block px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md"
+            >Contact</a
+          >
+        </div>
+      </div>
+    </header>
 
     <!-- products  -->
     <section>
@@ -116,6 +134,7 @@
         <div>
           <button
             onclick="loadAllProducts()"
+            id="btn-all"
             class="btn btn-outline active category-btn"
           >
             All
@@ -140,7 +159,9 @@
         class="footer sm:footer-horizontal bg-base-200 text-base-content p-10 bg-blue-950 text-gray-300 max-w-5xl mx-auto"
       >
         <nav>
-          <h2>SwiftCart</h2>
+          <a href="./index.html" class="text-2xl font-bold text-primary">
+            SwiftCart
+          </a>
         </nav>
         <nav>
           <h6 class="footer-title">Quick Links</h6>
@@ -237,6 +258,19 @@
         </nav>
       </footer>
     </footer>
+
+    <dialog id="product_details_modal" class="modal">
+      <div class="modal-box">
+        <form method="dialog">
+          <button
+            class="btn btn-sm btn-circle btn-ghost absolute z-40 right-2 top-2"
+          >
+            ✕
+          </button>
+        </form>
+        <div id="product_details_container" class=""></div>
+      </div>
+    </dialog>
 
     <script src="./script/index.js"></script>
   </body>
